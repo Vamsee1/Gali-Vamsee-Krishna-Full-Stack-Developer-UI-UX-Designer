@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -51,7 +50,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 px-6 bg-gray-50">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Featured Projects
           </h2>
@@ -71,7 +70,7 @@ const Projects = () => {
                   filter === category 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
                     : 'border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'
-                } transition-all duration-300`}
+                } transition-all duration-300 hover:scale-105`}
               >
                 <Filter size={16} className="mr-2" />
                 {category}
@@ -80,12 +79,11 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 stagger-children">
           {filteredProjects.map((project, index) => (
             <div 
               key={project.title}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover-lift hover-glow transition-all duration-300"
             >
               <div className="relative group">
                 <img 
@@ -104,7 +102,7 @@ const Projects = () => {
                   {project.technologies.map((tech) => (
                     <span 
                       key={tech}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm rounded-full"
+                      className="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm rounded-full hover:scale-105 transition-transform duration-200"
                     >
                       {tech}
                     </span>
@@ -114,7 +112,7 @@ const Projects = () => {
                 <div className="flex gap-3">
                   <Button 
                     size="sm"
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex-1"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex-1 hover:scale-105 transition-transform duration-200"
                   >
                     <ExternalLink size={16} className="mr-2" />
                     Live Demo
@@ -122,7 +120,7 @@ const Projects = () => {
                   <Button 
                     size="sm"
                     variant="outline"
-                    className="border-gray-300 hover:bg-gray-50"
+                    className="border-gray-300 hover:bg-gray-50 hover:scale-105 transition-transform duration-200"
                   >
                     <Github size={16} className="mr-2" />
                     Code
