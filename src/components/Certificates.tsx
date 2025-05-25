@@ -1,8 +1,13 @@
 
 import React from 'react';
 import { Award, ExternalLink, Calendar } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Certificates = () => {
+  const { translations } = useLanguage();
+  const { isDarkMode } = useTheme();
+
   const certificates = [
     {
       title: "React Developer Certification",
@@ -35,11 +40,13 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="py-20 px-6 bg-white">
+    <section id="certificates" className={`py-20 px-6 transition-all duration-300 ${
+      isDarkMode ? 'bg-gray-900' : 'bg-white'
+    }`}>
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Certificates & Achievements
+            {translations.certificates.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
         </div>
@@ -48,7 +55,11 @@ const Certificates = () => {
           {certificates.map((cert, index) => (
             <div 
               key={index}
-              className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover-lift"
+              className={`border rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover-lift ${
+                isDarkMode 
+                  ? 'bg-gray-800 border-gray-700' 
+                  : 'bg-gradient-to-br from-gray-50 to-white border-gray-200'
+              }`}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-lg">
@@ -64,15 +75,15 @@ const Certificates = () => {
                 </a>
               </div>
               
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{cert.title}</h3>
+              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{cert.title}</h3>
               <p className="text-blue-600 font-semibold mb-3">{cert.issuer}</p>
               
-              <div className="flex items-center mb-3 text-gray-600">
+              <div className={`flex items-center mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 <Calendar size={16} className="mr-2" />
                 <span>{cert.date}</span>
               </div>
               
-              <p className="text-gray-600">{cert.description}</p>
+              <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{cert.description}</p>
             </div>
           ))}
         </div>

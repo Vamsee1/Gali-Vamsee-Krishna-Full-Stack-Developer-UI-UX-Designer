@@ -1,8 +1,13 @@
 
 import React from 'react';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Education = () => {
+  const { translations } = useLanguage();
+  const { isDarkMode } = useTheme();
+
   const educationData = [
     {
       degree: "Bachelor of Technology in Computer Science",
@@ -23,11 +28,13 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-20 px-6 bg-gray-50">
+    <section id="education" className={`py-20 px-6 transition-all duration-300 ${
+      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+    }`}>
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Education
+            {translations.education.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
         </div>
@@ -36,7 +43,9 @@ const Education = () => {
           {educationData.map((edu, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl shadow-lg p-8 mb-8 hover:shadow-xl transition-all duration-300 hover-lift animate-slide-up"
+              className={`rounded-xl shadow-lg p-8 mb-8 hover:shadow-xl transition-all duration-300 hover-lift animate-slide-up ${
+                isDarkMode ? 'bg-gray-700' : 'bg-white'
+              }`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -45,7 +54,7 @@ const Education = () => {
                     <GraduationCap className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800">{edu.degree}</h3>
+                    <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{edu.degree}</h3>
                     <p className="text-blue-600 font-semibold">{edu.institution}</p>
                   </div>
                 </div>
@@ -54,7 +63,7 @@ const Education = () => {
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-4 mb-4 text-gray-600">
+              <div className={`flex flex-wrap gap-4 mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 <div className="flex items-center">
                   <Calendar size={16} className="mr-2" />
                   <span>{edu.duration}</span>
@@ -65,7 +74,7 @@ const Education = () => {
                 </div>
               </div>
               
-              <p className="text-gray-600">{edu.description}</p>
+              <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{edu.description}</p>
             </div>
           ))}
         </div>

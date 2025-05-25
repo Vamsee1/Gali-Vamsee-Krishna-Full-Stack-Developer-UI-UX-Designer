@@ -1,9 +1,14 @@
+
 import React, { useState } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
+  const { translations } = useLanguage();
+  const { isDarkMode } = useTheme();
 
   const projects = [
     {
@@ -48,15 +53,17 @@ const Projects = () => {
   const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
 
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-50">
+    <section id="projects" className={`py-20 px-6 transition-all duration-300 ${
+      isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
+    }`}>
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Featured Projects
+            {translations.projects.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            Here are some of my recent projects that showcase my skills and passion for development
+          <p className={`max-w-2xl mx-auto mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            {translations.projects.subtitle}
           </p>
 
           {/* Filter Buttons */}
@@ -83,7 +90,9 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <div 
               key={project.title}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover-lift hover-glow transition-all duration-300"
+              className={`rounded-xl overflow-hidden shadow-lg hover-lift hover-glow transition-all duration-300 ${
+                isDarkMode ? 'bg-gray-700' : 'bg-white'
+              }`}
             >
               <div className="relative group">
                 <img 
@@ -95,8 +104,8 @@ const Projects = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 text-gray-800">{project.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                <h3 className={`text-xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{project.title}</h3>
+                <p className={`mb-4 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (

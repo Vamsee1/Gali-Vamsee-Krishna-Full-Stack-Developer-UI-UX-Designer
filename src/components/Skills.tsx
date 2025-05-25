@@ -1,10 +1,13 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Code, Database, Cloud, Monitor, Server, Smartphone } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { translations } = useLanguage();
+  const { isDarkMode } = useTheme();
 
   const skillCategories = [
     {
@@ -71,15 +74,17 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className="py-20 px-6 bg-white" ref={sectionRef}>
+    <section id="skills" className={`py-20 px-6 transition-all duration-300 ${
+      isDarkMode ? 'bg-gray-900' : 'bg-white'
+    }`} ref={sectionRef}>
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Skills & Expertise
+            {translations.skills.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Here are the technologies and tools I work with to bring ideas to life
+          <p className={`max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            {translations.skills.subtitle}
           </p>
         </div>
 
@@ -87,13 +92,17 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <div 
               key={category.title}
-              className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover-lift"
+              className={`p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border hover-lift ${
+                isDarkMode 
+                  ? 'bg-gray-800 border-gray-700' 
+                  : 'bg-gradient-to-br from-gray-50 to-white border-gray-100'
+              }`}
             >
               <div className="flex items-center mb-6">
                 <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color} mr-4`}>
                   <category.icon size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800">{category.title}</h3>
+                <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{category.title}</h3>
               </div>
 
               <div className="space-y-4">
@@ -102,11 +111,11 @@ const Skills = () => {
                     <div className="flex justify-between items-center">
                       <div className="flex items-center space-x-3">
                         <span className="text-2xl animate-bounce-slow">{skill.icon}</span>
-                        <span className="font-semibold text-gray-800">{skill.name}</span>
+                        <span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{skill.name}</span>
                       </div>
-                      <span className="text-sm font-medium text-gray-600">{skill.level}%</span>
+                      <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{skill.level}%</span>
                     </div>
-                    <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div className={`rounded-full h-3 overflow-hidden ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
                       <div 
                         className={`bg-gradient-to-r ${category.color} h-full rounded-full transition-all duration-1000 ease-out`}
                         style={{ 
@@ -122,14 +131,15 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Additional Skills Icons */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold mb-8 text-gray-800 animate-slide-up">Technologies I Work With</h3>
+          <h3 className={`text-2xl font-bold mb-8 animate-slide-up ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Technologies I Work With</h3>
           <div className="flex flex-wrap justify-center gap-4 stagger-children">
             {['⚛️', '🟨', '🐍', '🟢', '🍃', '🐘', '☁️', '🐳', '📦', '🎨', '🚀', '💻', '🌐', '🔗', '🔄', '📱'].map((icon, index) => (
               <div 
                 key={index}
-                className="w-16 h-16 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center text-2xl cursor-pointer hover-lift hover-glow"
+                className={`w-16 h-16 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center text-2xl cursor-pointer hover-lift hover-glow ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-white'
+                }`}
               >
                 {icon}
               </div>

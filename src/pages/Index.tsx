@@ -10,7 +10,6 @@ import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Loader3D from '../components/Loader3D';
-import ArrowNavigation from '../components/ArrowNavigation';
 import GlobalThemeToggle from '../components/GlobalThemeToggle';
 import LazySection from '../components/LazySection';
 import { LanguageProvider } from '../contexts/LanguageContext';
@@ -37,7 +36,6 @@ const IndexContent = () => {
       isDarkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-slate-50 to-blue-50'
     }`}>
       <Header />
-      <ArrowNavigation />
       <GlobalThemeToggle />
       
       <div id="hero">
