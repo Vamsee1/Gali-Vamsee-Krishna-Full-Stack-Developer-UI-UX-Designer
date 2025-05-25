@@ -1,12 +1,11 @@
-
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Settings } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +15,9 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   const { toast } = useToast();
   const { translations } = useLanguage();
+  const { isDarkMode } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,32 +63,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className={`py-20 px-6 transition-all duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="container mx-auto relative">
-        {/* Settings Toggle - Fixed positioning */}
-        <div className="absolute top-4 right-4 z-10">
-          <div className="bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-3 border border-gray-200">
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
-            >
-              <Settings size={18} />
-              <span className="hidden md:block text-sm">{translations.contact.settings || 'Settings'}</span>
-            </button>
-            
-            {showSettings && (
-              <div className="mt-3 pt-3 border-t border-gray-200 animate-slide-up">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">{translations.contact.darkMode || 'Dark Mode'}</span>
-                  <Switch
-                    checked={isDarkMode}
-                    onCheckedChange={(checked) => setIsDarkMode(checked)}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
+      <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}>
             {translations.contact.title}

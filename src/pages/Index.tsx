@@ -11,11 +11,14 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Loader3D from '../components/Loader3D';
 import ArrowNavigation from '../components/ArrowNavigation';
+import GlobalThemeToggle from '../components/GlobalThemeToggle';
 import LazySection from '../components/LazySection';
 import { LanguageProvider } from '../contexts/LanguageContext';
+import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 
-const Index = () => {
+const IndexContent = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,41 +33,52 @@ const Index = () => {
   }
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-        <Header />
-        <ArrowNavigation />
-        
-        <div id="hero">
-          <Hero />
-        </div>
-        
-        <LazySection>
-          <About />
-        </LazySection>
-        
-        <LazySection>
-          <Education />
-        </LazySection>
-        
-        <LazySection>
-          <Certificates />
-        </LazySection>
-        
-        <LazySection>
-          <Skills />
-        </LazySection>
-        
-        <LazySection>
-          <Projects />
-        </LazySection>
-        
-        <LazySection>
-          <Contact />
-        </LazySection>
-        
-        <Footer />
+    <div className={`min-h-screen transition-all duration-300 ${
+      isDarkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-slate-50 to-blue-50'
+    }`}>
+      <Header />
+      <ArrowNavigation />
+      <GlobalThemeToggle />
+      
+      <div id="hero">
+        <Hero />
       </div>
+      
+      <LazySection>
+        <About />
+      </LazySection>
+      
+      <LazySection>
+        <Education />
+      </LazySection>
+      
+      <LazySection>
+        <Certificates />
+      </LazySection>
+      
+      <LazySection>
+        <Skills />
+      </LazySection>
+      
+      <LazySection>
+        <Projects />
+      </LazySection>
+      
+      <LazySection>
+        <Contact />
+      </LazySection>
+      
+      <Footer />
+    </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <LanguageProvider>
+      <ThemeProvider>
+        <IndexContent />
+      </ThemeProvider>
     </LanguageProvider>
   );
 };

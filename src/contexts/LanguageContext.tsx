@@ -27,7 +27,20 @@ const translations = {
     },
     about: {
       title: "About Me",
-      subtitle: "Passionate Developer & Creative Problem Solver"
+      subtitle: "Passionate Developer & Creative Problem Solver",
+      cleanCode: "Clean Code",
+      cleanCodeDesc: "Writing maintainable and scalable code",
+      uiux: "UI/UX Design",
+      uiuxDesc: "Creating beautiful user experiences",
+      performance: "Performance",
+      performanceDesc: "Optimizing for speed and efficiency",
+      collaboration: "Collaboration",
+      collaborationDesc: "Working effectively in teams",
+      projects: "Projects",
+      experience: "Experience",
+      description1: "With over 3 years of experience in web development, I specialize in creating modern, responsive applications using cutting-edge technologies. I'm passionate about writing clean, efficient code and creating intuitive user experiences.",
+      description2: "My journey in technology started with curiosity and has evolved into a deep love for solving complex problems through elegant solutions. I believe in continuous learning and staying updated with the latest industry trends.",
+      description3: "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community."
     },
     education: {
       title: "Education",
@@ -89,7 +102,20 @@ const translations = {
     },
     about: {
       title: "मेरे बारे में",
-      subtitle: "जुनूनी डेवलपर और रचनात्मक समस्या समाधानकर्ता"
+      subtitle: "जुनूनी डेवलपर और रचनात्मक समस्या समाधानकर्ता",
+      cleanCode: "स्वच्छ कोड",
+      cleanCodeDesc: "रखरखाव योग्य और स्केलेबल कोड लिखना",
+      uiux: "UI/UX डिजाइन",
+      uiuxDesc: "सुंदर उपयोगकर्ता अनुभव बनाना",
+      performance: "प्रदर्शन",
+      performanceDesc: "गति और दक्षता के लिए अनुकूलन",
+      collaboration: "सहयोग",
+      collaborationDesc: "टीमों में प्रभावी रूप से काम करना",
+      projects: "परियोजनाएं",
+      experience: "अनुभव",
+      description1: "वेब डेवलपमेंट में 3 से अधिक वर्षों के अनुभव के साथ, मैं अत्याधुनिक तकनीकों का उपयोग करके आधुनिक, रेस्पॉन्सिव एप्लिकेशन बनाने में विशेषज्ञ हूं। मैं स्वच्छ, कुशल कोड लिखने और सहज उपयोगकर्ता अनुभव बनाने के बारे में भावुक हूं।",
+      description2: "प्रौद्योगिकी में मेरी यात्रा जिज्ञासा के साथ शुरू हुई और सुरुचिपूर्ण समाधानों के माध्यम से जटिल समस्याओं को हल करने के गहरे प्रेम में विकसित हुई है। मैं निरंतर सीखने और नवीनतम उद्योग रुझानों के साथ अपडेट रहने में विश्वास करता हूं।",
+      description3: "जब मैं कोडिंग नहीं कर रहा होता, तो आप मुझे नई तकनीकों की खोज करते, ओपन-सोर्स प्रोजेक्ट्स में योगदान करते, या डेवलपर समुदाय के साथ ज्ञान साझा करते हुए पाएंगे।"
     },
     education: {
       title: "शिक्षा",
@@ -151,7 +177,20 @@ const translations = {
     },
     about: {
       title: "నా గురించి",
-      subtitle: "అభిరుచిగల డెవలపర్ మరియు సృజనాత్మక సమస్య పరిష్కర్త"
+      subtitle: "అభిరుచిగల డెవలపర్ మరియు సృజనాత్మక సమస్య పరిష్కర్త",
+      cleanCode: "క్లీన్ కోడ్",
+      cleanCodeDesc: "నిర్వహణ మరియు స్కేలబుల్ కోడ్ రాయడం",
+      uiux: "UI/UX డిజైన్",
+      uiuxDesc: "అందమైన వినియోగదారు అనుభవాలను సృష్టించడం",
+      performance: "పనితీరు",
+      performanceDesc: "వేగం మరియు సామర్థ్యం కోసం అనుకూలీకరణ",
+      collaboration: "సహకారం",
+      collaborationDesc: "జట్లలో సమర్థవంతంగా పనిచేయడం",
+      projects: "ప్రాజెక్టులు",
+      experience: "అనుభవం",
+      description1: "వెబ్ డెవలప్‌మెంట్‌లో 3 సంవత్సరాలకు మించిన అనుభవంతో, నేను అత్యాధునిక సాంకేతికతలను ఉపయోగించి ఆధునిక, రెస్పాన్సివ్ అప్లికేషన్లను సృష్టించడంలో నిపుణుడిని. నేను క్లీన్, సమర్థవంతమైన కోడ్ రాయడం మరియు సహజమైన వినియోగదారు అనుభవాలను సృష్టించడంలో ఆసక్తిని కలిగి ఉన్నాను.",
+      description2: "సాంకేతికతలో నా ప్రయాణం ఉత్సుకతతో ప్రారంభమైంది మరియు సొగసైన పరిష్కారాల ద్వారా సంక్లిష్ట సమస్యలను పరిష్కరించే లోతైన ప్రేమగా అభివృద్ధి చెందింది. నేను నిరంతర అభ్యాసం మరియు తాజా పరిశ్రమ ధోరణులతో అప్‌డేట్‌గా ఉండటంలో నమ్మకం కలిగి ఉన్నాను.",
+      description3: "నేను కోడింగ్ చేయనప్పుడు, మీరు నన్ను కొత్త సాంకేతికతలను అన్వేషిస్తూ, ఓపెన్-సోర్స్ ప్రాజెక్ట్‌లకు సహకరిస్తూ, లేదా డెవలపర్ కమ్యూనిటీతో జ్ఞానాన్ని పంచుకుంటూ కనుగొంటారు."
     },
     education: {
       title: "విద్య",
