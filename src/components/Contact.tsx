@@ -27,8 +27,8 @@ const Contact = () => {
 
     setTimeout(() => {
       toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: translations.contact.messageSuccess || "Message Sent!",
+        description: translations.contact.messageDescription || "Thank you for your message. I'll get back to you soon.",
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
       setIsSubmitting(false);
@@ -45,45 +45,45 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email',
+      title: translations.contact.emailTitle || 'Email',
       value: 'vamsee.krishna@example.com',
       href: 'mailto:vamsee.krishna@example.com'
     },
     {
       icon: Phone,
-      title: 'Phone',
+      title: translations.contact.phoneTitle || 'Phone',
       value: '+91 98765 43210',
       href: 'tel:+919876543210'
     },
     {
       icon: MapPin,
-      title: 'Location',
-      value: 'Hyderabad, India 🇮🇳',
+      title: translations.contact.locationTitle || 'Location',
+      value: translations.contact.location || 'Hyderabad, India 🇮🇳',
       href: '#'
     }
   ];
 
   return (
     <section id="contact" className={`py-20 px-6 transition-all duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="container mx-auto">
-        {/* Settings Toggle */}
-        <div className="fixed top-20 right-6 z-40">
-          <div className="bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-4 border border-gray-200">
+      <div className="container mx-auto relative">
+        {/* Settings Toggle - Fixed positioning */}
+        <div className="absolute top-4 right-4 z-10">
+          <div className="bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-3 border border-gray-200">
             <button
               onClick={() => setShowSettings(!showSettings)}
-              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
-              <Settings size={20} />
-              <span className="hidden md:block">Settings</span>
+              <Settings size={18} />
+              <span className="hidden md:block text-sm">{translations.contact.settings || 'Settings'}</span>
             </button>
             
             {showSettings && (
-              <div className="mt-4 space-y-4 animate-slide-up">
+              <div className="mt-3 pt-3 border-t border-gray-200 animate-slide-up">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Dark Mode</span>
+                  <span className="text-sm text-gray-600">{translations.contact.darkMode || 'Dark Mode'}</span>
                   <Switch
                     checked={isDarkMode}
-                    onCheckedChange={setIsDarkMode}
+                    onCheckedChange={(checked) => setIsDarkMode(checked)}
                   />
                 </div>
               </div>
@@ -97,8 +97,7 @@ const Contact = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
           <p className={`max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-            I'm always open to discussing new opportunities and interesting projects. 
-            Let's connect and bring your ideas to life!
+            {translations.contact.subtitle || "I'm always open to discussing new opportunities and interesting projects. Let's connect and bring your ideas to life!"}
           </p>
         </div>
 
@@ -107,11 +106,10 @@ const Contact = () => {
           <div className="space-y-8">
             <div>
               <h3 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
-                Let's Connect
+                {translations.contact.letsConnect || "Let's Connect"}
               </h3>
               <p className={`mb-8 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Whether you have a project in mind, want to collaborate, or just want to say hello, 
-                I'd love to hear from you. Feel free to reach out through any of the channels below.
+                {translations.contact.description || "Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. Feel free to reach out through any of the channels below."}
               </p>
             </div>
 
@@ -135,10 +133,9 @@ const Contact = () => {
             </div>
 
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 rounded-xl text-white">
-              <h4 className="font-bold mb-2">Quick Response</h4>
+              <h4 className="font-bold mb-2">{translations.contact.quickResponse || 'Quick Response'}</h4>
               <p className="text-blue-100">
-                I typically respond to messages within 24 hours. For urgent matters, 
-                feel free to call or send a direct email.
+                {translations.contact.responseTime || "I typically respond to messages within 24 hours. For urgent matters, feel free to call or send a direct email."}
               </p>
             </div>
           </div>
@@ -159,7 +156,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full"
-                    placeholder="John Doe"
+                    placeholder={translations.contact.namePlaceholder || "John Doe"}
                   />
                 </div>
                 <div>
@@ -174,7 +171,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full"
-                    placeholder="john@example.com"
+                    placeholder={translations.contact.emailPlaceholder || "john@example.com"}
                   />
                 </div>
               </div>
@@ -191,7 +188,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   className="w-full"
-                  placeholder="Project Discussion"
+                  placeholder={translations.contact.subjectPlaceholder || "Project Discussion"}
                 />
               </div>
 
@@ -207,7 +204,7 @@ const Contact = () => {
                   onChange={handleChange}
                   rows={5}
                   className="w-full"
-                  placeholder="Tell me about your project..."
+                  placeholder={translations.contact.messagePlaceholder || "Tell me about your project..."}
                 />
               </div>
 
@@ -219,7 +216,7 @@ const Contact = () => {
                 {isSubmitting ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                    Sending...
+                    {translations.contact.sending || 'Sending...'}
                   </>
                 ) : (
                   <>
