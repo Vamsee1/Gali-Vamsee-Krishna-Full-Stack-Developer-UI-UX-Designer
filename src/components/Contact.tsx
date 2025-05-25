@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,13 +16,15 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const { toast } = useToast();
+  const { translations } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Message Sent!",
@@ -48,26 +52,51 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+91 98765 43210',
+      href: 'tel:+919876543210'
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Hyderabad, India',
+      value: 'Hyderabad, India 🇮🇳',
       href: '#'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 px-6 bg-white">
+    <section id="contact" className={`py-20 px-6 transition-all duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className="container mx-auto">
+        {/* Settings Toggle */}
+        <div className="fixed top-20 right-6 z-40">
+          <div className="bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-4 border border-gray-200">
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              <Settings size={20} />
+              <span className="hidden md:block">Settings</span>
+            </button>
+            
+            {showSettings && (
+              <div className="mt-4 space-y-4 animate-slide-up">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Dark Mode</span>
+                  <Switch
+                    checked={isDarkMode}
+                    onCheckedChange={setIsDarkMode}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Get In Touch
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}>
+            {translations.contact.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className={`max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             I'm always open to discussing new opportunities and interesting projects. 
             Let's connect and bring your ideas to life!
           </p>
@@ -77,8 +106,10 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-800">Let's Connect</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <h3 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                Let's Connect
+              </h3>
+              <p className={`mb-8 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Whether you have a project in mind, want to collaborate, or just want to say hello, 
                 I'd love to hear from you. Feel free to reach out through any of the channels below.
               </p>
@@ -91,10 +122,10 @@ const Contact = () => {
                     <Icon size={24} className="text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{title}</h4>
+                    <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{title}</h4>
                     <a 
                       href={href}
-                      className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                      className={`hover:text-blue-600 transition-colors duration-200 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                     >
                       {value}
                     </a>
@@ -113,12 +144,12 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-50 p-8 rounded-xl">
+          <div className={`p-8 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name
+                  <label htmlFor="name" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {translations.contact.name}
                   </label>
                   <Input
                     id="name"
@@ -132,8 +163,8 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
+                  <label htmlFor="email" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {translations.contact.email}
                   </label>
                   <Input
                     id="email"
@@ -149,8 +180,8 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  Subject
+                <label htmlFor="subject" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations.contact.subject}
                 </label>
                 <Input
                   id="subject"
@@ -165,8 +196,8 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+                <label htmlFor="message" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations.contact.message}
                 </label>
                 <Textarea
                   id="message"
@@ -193,7 +224,7 @@ const Contact = () => {
                 ) : (
                   <>
                     <Send size={20} className="mr-2" />
-                    Send Message
+                    {translations.contact.send}
                   </>
                 )}
               </Button>
