@@ -9,21 +9,6 @@ const Education = () => {
   const { isDarkMode } = useTheme();
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
-  const scrollToSection = (direction: 'up' | 'down') => {
-    const currentSection = document.getElementById('education');
-    let targetSection: HTMLElement | null = null;
-
-    if (direction === 'up') {
-      targetSection = document.getElementById('about');
-    } else {
-      targetSection = document.getElementById('certificates');
-    }
-
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const toggleExpanded = (index: number) => {
     setExpandedItems(prev => 
       prev.includes(index) 
@@ -89,33 +74,34 @@ const Education = () => {
     <section id="education" className={`py-20 px-6 transition-all duration-300 relative overflow-hidden ${
       isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
     }`}>
-      {/* Background Animation Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full animate-float"></div>
-        <div className="absolute top-32 right-20 w-16 h-16 bg-purple-500 rounded-full animate-bounce-slow"></div>
-        <div className="absolute bottom-20 left-32 w-12 h-12 bg-pink-500 rounded-full animate-pulse-slow"></div>
-        <div className="absolute bottom-40 right-10 w-14 h-14 bg-green-500 rounded-full animate-wiggle"></div>
-        <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-orange-500 rounded-full animate-float"></div>
-      </div>
-
-      {/* Navigation Arrows */}
-      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
-        <button
-          onClick={() => scrollToSection('up')}
-          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
-            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          <ChevronUp size={20} />
-        </button>
-        <button
-          onClick={() => scrollToSection('down')}
-          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
-            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          <ChevronDown size={20} />
-        </button>
+      {/* Enhanced Background Animation Elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className={`absolute top-10 left-10 w-20 h-20 rounded-full animate-float ${
+          isDarkMode ? 'bg-blue-400' : 'bg-blue-500'
+        }`}></div>
+        <div className={`absolute top-32 right-20 w-16 h-16 rounded-full animate-bounce-slow ${
+          isDarkMode ? 'bg-purple-400' : 'bg-purple-500'
+        }`}></div>
+        <div className={`absolute bottom-20 left-32 w-12 h-12 rounded-full animate-pulse-slow ${
+          isDarkMode ? 'bg-pink-400' : 'bg-pink-500'
+        }`}></div>
+        <div className={`absolute bottom-40 right-10 w-14 h-14 rounded-full animate-wiggle ${
+          isDarkMode ? 'bg-green-400' : 'bg-green-500'
+        }`}></div>
+        <div className={`absolute top-1/2 left-1/4 w-8 h-8 rounded-full animate-float ${
+          isDarkMode ? 'bg-orange-400' : 'bg-orange-500'
+        }`}></div>
+        
+        {/* Additional geometric shapes */}
+        <div className={`absolute top-20 right-1/3 w-6 h-6 rotate-45 animate-wiggle ${
+          isDarkMode ? 'bg-yellow-400' : 'bg-yellow-500'
+        }`}></div>
+        <div className={`absolute bottom-32 left-1/6 w-10 h-10 rounded-full animate-bounce-slow ${
+          isDarkMode ? 'bg-red-400' : 'bg-red-500'
+        }`}></div>
+        <div className={`absolute top-3/4 right-1/4 w-8 h-8 rotate-12 animate-pulse-slow ${
+          isDarkMode ? 'bg-teal-400' : 'bg-teal-500'
+        }`}></div>
       </div>
 
       <div className="container mx-auto relative z-10">
