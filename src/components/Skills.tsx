@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Code, Database, Cloud, Monitor, Server, Smartphone } from 'lucide-react';
+import { Code, Database, Cloud, Monitor, Server, Smartphone, ChevronUp, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -9,52 +10,20 @@ const Skills = () => {
   const { translations } = useLanguage();
   const { isDarkMode } = useTheme();
 
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: Monitor,
-      color: 'from-blue-500 to-cyan-500',
-      skills: [
-        { name: 'React/Next.js', level: 90, icon: '⚛️' },
-        { name: 'JavaScript/TypeScript', level: 85, icon: '🟨' },
-        { name: 'HTML5/CSS3', level: 90, icon: '🌐' },
-        { name: 'Tailwind CSS', level: 85, icon: '🎨' }
-      ]
-    },
-    {
-      title: 'Backend Development',
-      icon: Server,
-      color: 'from-green-500 to-emerald-500',
-      skills: [
-        { name: 'Node.js', level: 80, icon: '🟢' },
-        { name: 'Python', level: 75, icon: '🐍' },
-        { name: 'Express.js', level: 80, icon: '🚀' },
-        { name: 'REST APIs', level: 85, icon: '🔗' }
-      ]
-    },
-    {
-      title: 'Database & Tools',
-      icon: Database,
-      color: 'from-purple-500 to-pink-500',
-      skills: [
-        { name: 'MongoDB', level: 75, icon: '🍃' },
-        { name: 'PostgreSQL', level: 70, icon: '🐘' },
-        { name: 'Git/GitHub', level: 90, icon: '📦' },
-        { name: 'VS Code', level: 95, icon: '💻' }
-      ]
-    },
-    {
-      title: 'DevOps & Cloud',
-      icon: Cloud,
-      color: 'from-orange-500 to-red-500',
-      skills: [
-        { name: 'AWS', level: 65, icon: '☁️' },
-        { name: 'Docker', level: 60, icon: '🐳' },
-        { name: 'Vercel/Netlify', level: 80, icon: '🚀' },
-        { name: 'CI/CD', level: 65, icon: '🔄' }
-      ]
+  const scrollToSection = (direction: 'up' | 'down') => {
+    const currentSection = document.getElementById('skills');
+    let targetSection: HTMLElement | null = null;
+
+    if (direction === 'up') {
+      targetSection = document.getElementById('certificates');
+    } else {
+      targetSection = document.getElementById('projects');
     }
-  ];
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,9 +43,29 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className={`py-20 px-6 transition-all duration-300 ${
+    <section id="skills" className={`py-20 px-6 transition-all duration-300 relative ${
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`} ref={sectionRef}>
+      {/* Navigation Arrows */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
+        <button
+          onClick={() => scrollToSection('up')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronUp size={20} />
+        </button>
+        <button
+          onClick={() => scrollToSection('down')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronDown size={20} />
+        </button>
+      </div>
+
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -89,7 +78,7 @@ const Skills = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 stagger-children">
-          {skillCategories.map((category, categoryIndex) => (
+          {translations.skills.categories.map((category: any, categoryIndex: number) => (
             <div 
               key={category.title}
               className={`p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border hover-lift ${
@@ -100,13 +89,16 @@ const Skills = () => {
             >
               <div className="flex items-center mb-6">
                 <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color} mr-4`}>
-                  <category.icon size={24} className="text-white" />
+                  {category.icon === 'Monitor' && <Monitor size={24} className="text-white" />}
+                  {category.icon === 'Server' && <Server size={24} className="text-white" />}
+                  {category.icon === 'Database' && <Database size={24} className="text-white" />}
+                  {category.icon === 'Cloud' && <Cloud size={24} className="text-white" />}
                 </div>
                 <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{category.title}</h3>
               </div>
 
               <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
+                {category.skills.map((skill: any, skillIndex: number) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center space-x-3">
@@ -132,16 +124,16 @@ const Skills = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <h3 className={`text-2xl font-bold mb-8 animate-slide-up ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Technologies I Work With</h3>
+          <h3 className={`text-2xl font-bold mb-8 animate-slide-up ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{translations.skills.techTitle}</h3>
           <div className="flex flex-wrap justify-center gap-4 stagger-children">
-            {['⚛️', '🟨', '🐍', '🟢', '🍃', '🐘', '☁️', '🐳', '📦', '🎨', '🚀', '💻', '🌐', '🔗', '🔄', '📱'].map((icon, index) => (
+            {translations.skills.technologies.map((tech: string, index: number) => (
               <div 
                 key={index}
                 className={`w-16 h-16 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center text-2xl cursor-pointer hover-lift hover-glow ${
                   isDarkMode ? 'bg-gray-800' : 'bg-white'
                 }`}
               >
-                {icon}
+                {tech}
               </div>
             ))}
           </div>

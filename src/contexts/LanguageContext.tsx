@@ -65,11 +65,89 @@ const translations = {
     },
     certificates: {
       title: "Certificates",
-      subtitle: "Professional Certifications & Achievements"
+      subtitle: "Professional Certifications & Achievements",
+      list: [
+        {
+          title: "React Developer Certification",
+          issuer: "Meta",
+          date: "2023",
+          description: "Advanced React concepts, hooks, and state management",
+          link: "#"
+        },
+        {
+          title: "JavaScript Algorithms and Data Structures", 
+          issuer: "freeCodeCamp",
+          date: "2023",
+          description: "Comprehensive JavaScript programming and algorithms",
+          link: "#"
+        },
+        {
+          title: "Full Stack Web Development",
+          issuer: "Coursera",
+          date: "2022",
+          description: "End-to-end web application development",
+          link: "#"
+        },
+        {
+          title: "AWS Cloud Practitioner",
+          issuer: "Amazon Web Services",
+          date: "2023",
+          description: "Cloud computing fundamentals and AWS services",
+          link: "#"
+        }
+      ]
     },
     skills: {
       title: "Skills",
-      subtitle: "Technologies I Work With"
+      subtitle: "Technologies I Work With",
+      techTitle: "Technologies I Work With",
+      technologies: ['⚛️', '🟨', '🐍', '🟢', '🍃', '🐘', '☁️', '🐳', '📦', '🎨', '🚀', '💻', '🌐', '🔗', '🔄', '📱'],
+      categories: [
+        {
+          title: 'Frontend Development',
+          icon: 'Monitor',
+          color: 'from-blue-500 to-cyan-500',
+          skills: [
+            { name: 'React/Next.js', level: 90, icon: '⚛️' },
+            { name: 'JavaScript/TypeScript', level: 85, icon: '🟨' },
+            { name: 'HTML5/CSS3', level: 90, icon: '🌐' },
+            { name: 'Tailwind CSS', level: 85, icon: '🎨' }
+          ]
+        },
+        {
+          title: 'Backend Development',
+          icon: 'Server',
+          color: 'from-green-500 to-emerald-500',
+          skills: [
+            { name: 'Node.js', level: 80, icon: '🟢' },
+            { name: 'Python', level: 75, icon: '🐍' },
+            { name: 'Express.js', level: 80, icon: '🚀' },
+            { name: 'REST APIs', level: 85, icon: '🔗' }
+          ]
+        },
+        {
+          title: 'Database & Tools',
+          icon: 'Database',
+          color: 'from-purple-500 to-pink-500',
+          skills: [
+            { name: 'MongoDB', level: 75, icon: '🍃' },
+            { name: 'PostgreSQL', level: 70, icon: '🐘' },
+            { name: 'Git/GitHub', level: 90, icon: '📦' },
+            { name: 'VS Code', level: 95, icon: '💻' }
+          ]
+        },
+        {
+          title: 'DevOps & Cloud',
+          icon: 'Cloud',
+          color: 'from-orange-500 to-red-500',
+          skills: [
+            { name: 'AWS', level: 65, icon: '☁️' },
+            { name: 'Docker', level: 60, icon: '🐳' },
+            { name: 'Vercel/Netlify', level: 80, icon: '🚀' },
+            { name: 'CI/CD', level: 65, icon: '🔄' }
+          ]
+        }
+      ]
     },
     projects: {
       title: "Projects",
@@ -189,11 +267,89 @@ const translations = {
     },
     certificates: {
       title: "प्रमाणपत्र",
-      subtitle: "व्यावसायिक प्रमाणन और उपलब्धियां"
+      subtitle: "व्यावसायिक प्रमाणन और उपलब्धियां",
+      list: [
+        {
+          title: "रिएक्ट डेवलपर प्रमाणन",
+          issuer: "मेटा",
+          date: "2023",
+          description: "उन्नत रिएक्ट अवधारणाएं, हुक्स और स्टेट मैनेजमेंट",
+          link: "#"
+        },
+        {
+          title: "जावास्क्रिप्ट एल्गोरिदम और डेटा स्ट्रक्चर्स",
+          issuer: "freeCodeCamp",
+          date: "2023",
+          description: "व्यापक जावास्क्रिप्ट प्रोग्रामिंग और एल्गोरिदम",
+          link: "#"
+        },
+        {
+          title: "फुल स्टैक वेब डेवलपमेंट",
+          issuer: "Coursera",
+          date: "2022",
+          description: "एंड-टू-एंड वेब एप्लिकेशन डेवलपमेंट",
+          link: "#"
+        },
+        {
+          title: "AWS क्लाउड प्रैक्टिशनर",
+          issuer: "Amazon Web Services",
+          date: "2023",
+          description: "क्लाउड कंप्यूटिंग फंडामेंटल्स और AWS सेवाएं",
+          link: "#"
+        }
+      ]
     },
     skills: {
       title: "कौशल",
-      subtitle: "तकनीकें जिनके साथ मैं काम करता हूं"
+      subtitle: "तकनीकें जिनके साथ मैं काम करता हूं",
+      techTitle: "तकनीकें जिनके साथ मैं काम करता हूं",
+      technologies: ['⚛️', '🟨', '🐍', '🟢', '🍃', '🐘', '☁️', '🐳', '📦', '🎨', '🚀', '💻', '🌐', '🔗', '🔄', '📱'],
+      categories: [
+        {
+          title: 'फ्रंटएंड डेवलपमेंट',
+          icon: 'Monitor',
+          color: 'from-blue-500 to-cyan-500',
+          skills: [
+            { name: 'React/Next.js', level: 90, icon: '⚛️' },
+            { name: 'JavaScript/TypeScript', level: 85, icon: '🟨' },
+            { name: 'HTML5/CSS3', level: 90, icon: '🌐' },
+            { name: 'Tailwind CSS', level: 85, icon: '🎨' }
+          ]
+        },
+        {
+          title: 'बैकएंड डेवलपमेंट',
+          icon: 'Server',
+          color: 'from-green-500 to-emerald-500',
+          skills: [
+            { name: 'Node.js', level: 80, icon: '🟢' },
+            { name: 'Python', level: 75, icon: '🐍' },
+            { name: 'Express.js', level: 80, icon: '🚀' },
+            { name: 'REST APIs', level: 85, icon: '🔗' }
+          ]
+        },
+        {
+          title: 'डेटाबेस और टूल्स',
+          icon: 'Database',
+          color: 'from-purple-500 to-pink-500',
+          skills: [
+            { name: 'MongoDB', level: 75, icon: '🍃' },
+            { name: 'PostgreSQL', level: 70, icon: '🐘' },
+            { name: 'Git/GitHub', level: 90, icon: '📦' },
+            { name: 'VS Code', level: 95, icon: '💻' }
+          ]
+        },
+        {
+          title: 'DevOps और क्लाउड',
+          icon: 'Cloud',
+          color: 'from-orange-500 to-red-500',
+          skills: [
+            { name: 'AWS', level: 65, icon: '☁️' },
+            { name: 'Docker', level: 60, icon: '🐳' },
+            { name: 'Vercel/Netlify', level: 80, icon: '🚀' },
+            { name: 'CI/CD', level: 65, icon: '🔄' }
+          ]
+        }
+      ]
     },
     projects: {
       title: "परियोजनाएं",
@@ -313,11 +469,89 @@ const translations = {
     },
     certificates: {
       title: "ప్రమాణపత్రాలు",
-      subtitle: "వృత్తిపరమైన ధృవీకరణలు మరియు విజయాలు"
+      subtitle: "వృత్తిపరమైన ధృవీకరణలు మరియు విజయాలు",
+      list: [
+        {
+          title: "రియాక్ట్ డెవలపర్ సర్టిఫికేషన్",
+          issuer: "మెటా",
+          date: "2023",
+          description: "అధునాతన రియాక్ట్ కాన్సెప్ట్స్, హుక్స్ మరియు స్టేట్ మేనేజ్‌మెంట్",
+          link: "#"
+        },
+        {
+          title: "జావాస్క్రిప్ట్ ఆల్గోరిథమ్స్ మరియు డేటా స్ట్రక్చర్స్",
+          issuer: "freeCodeCamp",
+          date: "2023",
+          description: "సమగ్ర జావాస్క్రిప్ట్ ప్రోగ్రామింగ్ మరియు ఆల్గోరిథమ్స్",
+          link: "#"
+        },
+        {
+          title: "ఫుల్ స్టాక్ వెబ్ డెవలప్‌మెంట్",
+          issuer: "Coursera",
+          date: "2022",
+          description: "ఎండ్-టు-ఎండ్ వెబ్ అప్లికేషన్ డెవలప్‌మెంట్",
+          link: "#"
+        },
+        {
+          title: "AWS క్లౌడ్ ప్రాక్టిషనర్",
+          issuer: "Amazon Web Services",
+          date: "2023",
+          description: "క్లౌడ్ కంప్యూటింగ్ ఫండమెంటల్స్ మరియు AWS సేవలు",
+          link: "#"
+        }
+      ]
     },
     skills: {
       title: "నైపుణ్యాలు",
-      subtitle: "నేను పనిచేసే సాంకేతికతలు"
+      subtitle: "నేను పనిచేసే సాంకేతికతలు",
+      techTitle: "నేను పనిచేసే సాంకేతికతలు",
+      technologies: ['⚛️', '🟨', '🐍', '🟢', '🍃', '🐘', '☁️', '🐳', '📦', '🎨', '🚀', '💻', '🌐', '🔗', '🔄', '📱'],
+      categories: [
+        {
+          title: 'ఫ్రంట్‌ఎండ్ డెవలప్‌మెంట్',
+          icon: 'Monitor',
+          color: 'from-blue-500 to-cyan-500',
+          skills: [
+            { name: 'React/Next.js', level: 90, icon: '⚛️' },
+            { name: 'JavaScript/TypeScript', level: 85, icon: '🟨' },
+            { name: 'HTML5/CSS3', level: 90, icon: '🌐' },
+            { name: 'Tailwind CSS', level: 85, icon: '🎨' }
+          ]
+        },
+        {
+          title: 'బ్యాక్‌ఎండ్ డెవలప్‌మెంట్',
+          icon: 'Server',
+          color: 'from-green-500 to-emerald-500',
+          skills: [
+            { name: 'Node.js', level: 80, icon: '🟢' },
+            { name: 'Python', level: 75, icon: '🐍' },
+            { name: 'Express.js', level: 80, icon: '🚀' },
+            { name: 'REST APIs', level: 85, icon: '🔗' }
+          ]
+        },
+        {
+          title: 'డేటాబేస్ & టూల్స్',
+          icon: 'Database',
+          color: 'from-purple-500 to-pink-500',
+          skills: [
+            { name: 'MongoDB', level: 75, icon: '🍃' },
+            { name: 'PostgreSQL', level: 70, icon: '🐘' },
+            { name: 'Git/GitHub', level: 90, icon: '📦' },
+            { name: 'VS Code', level: 95, icon: '💻' }
+          ]
+        },
+        {
+          title: 'DevOps & క్లౌడ్',
+          icon: 'Cloud',
+          color: 'from-orange-500 to-red-500',
+          skills: [
+            { name: 'AWS', level: 65, icon: '☁️' },
+            { name: 'Docker', level: 60, icon: '🐳' },
+            { name: 'Vercel/Netlify', level: 80, icon: '🚀' },
+            { name: 'CI/CD', level: 65, icon: '🔄' }
+          ]
+        }
+      ]
     },
     projects: {
       title: "ప్రాజెక్టులు",
@@ -332,7 +566,7 @@ const translations = {
       },
       ecommerce: {
         title: "ఈ-కామర్స్ ప్లాట్‌ఫారమ్",
-        description: "React, Node.js మరియు MongoDB తో ఫుల్-స్టాక్ ఈ-కామర్స్ పరిష్కారం. వినియోగదారు ప్రమాణీకరణ, చెల్లింపు ఏకీకరణ మరియు అడ్మిన్ డ్యాష్‌బోర్డ్ వంటి లక్షణాలు ఉన్నాయి।"
+        description: "React, Node.js మరియు MongoDB తో ఫుల్-స్టాక్ ఈ-కామర్స్ పరిష్కారం। వినియోగదారు ప్రమాణీకరణ, చెల్లింపు ఏకీకరణ మరియు అడ్మిన్ డ్యాష్‌బోర్డ్ వంటి లక్షణాలు ఉన్నాయి।"
       },
       weather: {
         title: "వాతావరణ డ్యాష్‌బోర్డ్",

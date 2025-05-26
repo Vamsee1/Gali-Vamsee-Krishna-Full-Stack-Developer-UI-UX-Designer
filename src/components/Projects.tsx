@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ExternalLink, Github, Filter } from 'lucide-react';
+import { ExternalLink, Github, Filter, ChevronUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -9,6 +9,21 @@ const Projects = () => {
   const [filter, setFilter] = useState('All');
   const { translations } = useLanguage();
   const { isDarkMode } = useTheme();
+
+  const scrollToSection = (direction: 'up' | 'down') => {
+    const currentSection = document.getElementById('projects');
+    let targetSection: HTMLElement | null = null;
+
+    if (direction === 'up') {
+      targetSection = document.getElementById('skills');
+    } else {
+      targetSection = document.getElementById('contact');
+    }
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const projects = [
     {
@@ -64,9 +79,29 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className={`py-20 px-6 transition-all duration-300 ${
+    <section id="projects" className={`py-20 px-6 transition-all duration-300 relative ${
       isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
     }`}>
+      {/* Navigation Arrows */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
+        <button
+          onClick={() => scrollToSection('up')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronUp size={20} />
+        </button>
+        <button
+          onClick={() => scrollToSection('down')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronDown size={20} />
+        </button>
+      </div>
+
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
