@@ -12,8 +12,8 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.',
+      title: translations.projects.ecommerce.title,
+      description: translations.projects.ecommerce.description,
       image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
       technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       category: 'Full Stack',
@@ -21,8 +21,8 @@ const Projects = () => {
       githubUrl: '#'
     },
     {
-      title: 'Weather Dashboard',
-      description: 'Beautiful weather application with real-time data, forecasts, and interactive maps. Built with React and integrated with weather APIs.',
+      title: translations.projects.weather.title,
+      description: translations.projects.weather.description,
       image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop',
       technologies: ['React', 'APIs', 'Charts.js', 'CSS'],
       category: 'Frontend',
@@ -30,8 +30,8 @@ const Projects = () => {
       githubUrl: '#'
     },
     {
-      title: 'Task Management API',
-      description: 'RESTful API for task management with user authentication, CRUD operations, and real-time notifications using WebSockets.',
+      title: translations.projects.taskapi.title,
+      description: translations.projects.taskapi.description,
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
       technologies: ['Node.js', 'Express', 'PostgreSQL', 'Socket.io'],
       category: 'Backend',
@@ -39,8 +39,8 @@ const Projects = () => {
       githubUrl: '#'
     },
     {
-      title: 'Portfolio Website',
-      description: 'Modern, responsive portfolio website with smooth animations and optimal performance. Built with React and Tailwind CSS.',
+      title: translations.projects.portfolio.title,
+      description: translations.projects.portfolio.description,
       image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&h=300&fit=crop',
       technologies: ['React', 'Tailwind', 'Framer Motion', 'Vercel'],
       category: 'Frontend',
@@ -49,8 +49,19 @@ const Projects = () => {
     }
   ];
 
-  const categories = ['All', 'Frontend', 'Backend', 'Full Stack'];
-  const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
+  const categories = [
+    translations.projects.filters.all,
+    translations.projects.filters.frontend,
+    translations.projects.filters.backend,
+    translations.projects.filters.fullstack
+  ];
+  
+  const filteredProjects = filter === translations.projects.filters.all ? projects : projects.filter(p => {
+    if (filter === translations.projects.filters.frontend) return p.category === 'Frontend';
+    if (filter === translations.projects.filters.backend) return p.category === 'Backend';
+    if (filter === translations.projects.filters.fullstack) return p.category === 'Full Stack';
+    return true;
+  });
 
   return (
     <section id="projects" className={`py-20 px-6 transition-all duration-300 ${
@@ -124,7 +135,7 @@ const Projects = () => {
                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex-1 hover:scale-105 transition-transform duration-200"
                   >
                     <ExternalLink size={16} className="mr-2" />
-                    Live Demo
+                    {translations.projects.liveDemo}
                   </Button>
                   <Button 
                     size="sm"
@@ -132,7 +143,7 @@ const Projects = () => {
                     className="border-gray-300 hover:bg-gray-50 hover:scale-105 transition-transform duration-200"
                   >
                     <Github size={16} className="mr-2" />
-                    Code
+                    {translations.projects.code}
                   </Button>
                 </div>
               </div>
