@@ -9,6 +9,21 @@ const Education = () => {
   const { isDarkMode } = useTheme();
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
+  const scrollToSection = (direction: 'up' | 'down') => {
+    const currentSection = document.getElementById('education');
+    let targetSection: HTMLElement | null = null;
+
+    if (direction === 'up') {
+      targetSection = document.getElementById('about');
+    } else {
+      targetSection = document.getElementById('certificates');
+    }
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const toggleExpanded = (index: number) => {
     setExpandedItems(prev => 
       prev.includes(index) 
@@ -25,7 +40,8 @@ const Education = () => {
       duration: translations.education.btech.duration,
       grade: translations.education.btech.grade,
       description: translations.education.btech.description,
-      year: "2023"
+      year: "2023",
+      color: "from-blue-600 to-purple-600"
     },
     {
       degree: translations.education.intermediate.degree,
@@ -34,97 +50,175 @@ const Education = () => {
       duration: translations.education.intermediate.duration, 
       grade: translations.education.intermediate.grade,
       description: translations.education.intermediate.description,
-      year: "2019"
+      year: "2019",
+      color: "from-purple-600 to-pink-600"
+    },
+    {
+      degree: translations.education.certification?.degree || "Professional Certification",
+      institution: translations.education.certification?.institution || "Tech Institute",
+      location: translations.education.certification?.location || "Online",
+      duration: translations.education.certification?.duration || "2022 - 2023", 
+      grade: translations.education.certification?.grade || "Distinction",
+      description: translations.education.certification?.description || "Advanced programming and development skills",
+      year: "2022",
+      color: "from-green-600 to-blue-600"
+    },
+    {
+      degree: translations.education.diploma?.degree || "Diploma in Computer Science",
+      institution: translations.education.diploma?.institution || "Polytechnic College",
+      location: translations.education.diploma?.location || "Local Campus",
+      duration: translations.education.diploma?.duration || "2017 - 2019", 
+      grade: translations.education.diploma?.grade || "First Class",
+      description: translations.education.diploma?.description || "Foundation in computer science and programming",
+      year: "2017",
+      color: "from-orange-600 to-red-600"
+    },
+    {
+      degree: translations.education.school?.degree || "Higher Secondary Education",
+      institution: translations.education.school?.institution || "High School",
+      location: translations.education.school?.location || "Home Town",
+      duration: translations.education.school?.duration || "2015 - 2017", 
+      grade: translations.education.school?.grade || "A Grade",
+      description: translations.education.school?.description || "Science stream with focus on mathematics and physics",
+      year: "2015",
+      color: "from-indigo-600 to-purple-600"
     }
   ];
 
   return (
-    <section id="education" className={`py-20 px-6 transition-all duration-300 ${
+    <section id="education" className={`py-20 px-6 transition-all duration-300 relative overflow-hidden ${
       isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
     }`}>
-      <div className="container mx-auto">
+      {/* Background Animation Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full animate-float"></div>
+        <div className="absolute top-32 right-20 w-16 h-16 bg-purple-500 rounded-full animate-bounce-slow"></div>
+        <div className="absolute bottom-20 left-32 w-12 h-12 bg-pink-500 rounded-full animate-pulse-slow"></div>
+        <div className="absolute bottom-40 right-10 w-14 h-14 bg-green-500 rounded-full animate-wiggle"></div>
+        <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-orange-500 rounded-full animate-float"></div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
+        <button
+          onClick={() => scrollToSection('up')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronUp size={20} />
+        </button>
+        <button
+          onClick={() => scrollToSection('down')}
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            isDarkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          <ChevronDown size={20} />
+        </button>
+      </div>
+
+      <div className="container mx-auto relative z-10">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             {translations.education.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
+          <p className={`max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            My educational journey and academic achievements
+          </p>
         </div>
 
         <div className="max-w-6xl mx-auto relative">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-600 to-purple-600 h-full"></div>
+          {/* Enhanced Timeline Line with Gradient */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-600 via-purple-600 to-pink-600 h-full rounded-full shadow-lg"></div>
+          
+          {/* Animated Timeline Dots */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-2 h-full">
+            {educationData.map((_, index) => (
+              <div 
+                key={index}
+                className={`absolute w-4 h-4 bg-gradient-to-r ${educationData[index].color} rounded-full animate-pulse-slow`}
+                style={{ top: `${(index * 100) / (educationData.length - 1)}%` }}
+              ></div>
+            ))}
+          </div>
           
           {educationData.map((edu, index) => (
             <div 
               key={index}
-              className={`relative flex items-center mb-16 ${
+              className={`relative flex items-center mb-20 ${
                 index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'
-              }`}
+              } animate-slide-up`}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Timeline Icon */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+              {/* Enhanced Timeline Icon */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
                 <button
                   onClick={() => toggleExpanded(index)}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full hover:scale-110 transition-transform duration-300 shadow-lg"
+                  className={`bg-gradient-to-r ${edu.color} p-4 rounded-full hover:scale-110 transition-all duration-300 shadow-xl hover:shadow-2xl animate-bounce-slow`}
+                  style={{ animationDelay: `${index * 0.3}s` }}
                 >
                   <GraduationCap className="text-white" size={28} />
                 </button>
               </div>
 
-              {/* Content Card */}
+              {/* Enhanced Content Card */}
               <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                <div className={`rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover-lift ${
-                  isDarkMode ? 'bg-gray-700' : 'bg-white'
+                <div className={`rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 hover-lift hover-glow backdrop-blur-sm border ${
+                  isDarkMode 
+                    ? 'bg-gray-700/80 border-gray-600' 
+                    : 'bg-white/90 border-gray-200'
                 }`}>
-                  {/* Year Badge */}
-                  <div className={`inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 ${
-                    index % 2 === 0 ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'
-                  }`}>
+                  {/* Enhanced Year Badge */}
+                  <div className={`inline-block px-6 py-3 rounded-full text-sm font-bold mb-6 bg-gradient-to-r ${edu.color} text-white shadow-lg`}>
                     {edu.year}
                   </div>
                   
-                  <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-2xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                     {edu.degree}
                   </h3>
-                  <p className="text-blue-600 font-semibold mb-2">{edu.institution}</p>
+                  <p className={`font-semibold mb-3 bg-gradient-to-r ${edu.color} bg-clip-text text-transparent`}>
+                    {edu.institution}
+                  </p>
                   
                   <button
                     onClick={() => toggleExpanded(index)}
-                    className={`flex items-center gap-2 text-sm transition-colors duration-200 ${
+                    className={`flex items-center gap-2 text-sm transition-all duration-300 hover:scale-105 ${
                       index % 2 === 0 ? 'justify-end' : 'justify-start'
                     } ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-800'}`}
                   >
                     {expandedItems.includes(index) ? (
                       <>
-                        {translations.education.showLess} <ChevronUp size={16} />
+                        {translations.education.showLess} <ChevronUp size={16} className="animate-bounce" />
                       </>
                     ) : (
                       <>
-                        {translations.education.showMore} <ChevronDown size={16} />
+                        {translations.education.showMore} <ChevronDown size={16} className="animate-bounce" />
                       </>
                     )}
                   </button>
 
-                  {/* Expandable Details */}
+                  {/* Enhanced Expandable Details */}
                   {expandedItems.includes(index) && (
-                    <div className="mt-4 pt-4 border-t border-gray-200 animate-fade-in">
-                      <div className={`flex flex-wrap gap-4 mb-4 text-sm ${
+                    <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in">
+                      <div className={`flex flex-wrap gap-6 mb-6 text-sm ${
                         index % 2 === 0 ? 'justify-end' : 'justify-start'
                       } ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                        <div className="flex items-center">
-                          <Calendar size={16} className="mr-2" />
-                          <span>{edu.duration}</span>
+                        <div className="flex items-center bg-blue-100 px-3 py-2 rounded-lg">
+                          <Calendar size={16} className="mr-2 text-blue-600" />
+                          <span className="text-blue-800">{edu.duration}</span>
                         </div>
-                        <div className="flex items-center">
-                          <MapPin size={16} className="mr-2" />
-                          <span>{edu.location}</span>
+                        <div className="flex items-center bg-green-100 px-3 py-2 rounded-lg">
+                          <MapPin size={16} className="mr-2 text-green-600" />
+                          <span className="text-green-800">{edu.location}</span>
                         </div>
-                        <div className="flex items-center">
-                          <Award size={16} className="mr-2" />
-                          <span>{edu.grade}</span>
+                        <div className="flex items-center bg-purple-100 px-3 py-2 rounded-lg">
+                          <Award size={16} className="mr-2 text-purple-600" />
+                          <span className="text-purple-800">{edu.grade}</span>
                         </div>
                       </div>
-                      <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                         {edu.description}
                       </p>
                     </div>
