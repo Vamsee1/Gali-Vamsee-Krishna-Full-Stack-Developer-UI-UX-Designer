@@ -23,7 +23,7 @@ const Hero = () => {
             <div className="relative group mx-auto w-32 h-32 sm:w-40 sm:h-40">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
               <img
-                src="/profile.jpg"
+                src="Vamsee Profile.jpg"
                 alt={translations.hero.name}
                 className="relative w-full h-full rounded-full shadow-2xl border-4 border-white/20 group-hover:scale-110 transition-all duration-500 object-cover"
                 loading="eager"
@@ -85,9 +85,9 @@ const Hero = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-4 sm:space-x-8">
             {[
-              { icon: Github, href: 'https://github.com/vamsee1', label: 'GitHub', delay: '1.4s' },
-              { icon: Linkedin, href: 'https://linkedin.com/in/vamsee', label: 'LinkedIn', delay: '1.6s' },
-              { icon: Mail, href: 'mailto:vamsee@example.com', label: 'Email', delay: '1.8s' }
+              { icon: Github, href: 'https://github.com/Vamsee1', label: 'GitHub', delay: '1.4s' },
+              { icon: Linkedin, href: 'https://www.linkedin.com/in/vamsee-krishna-gali-746097257', label: 'LinkedIn', delay: '1.6s' },
+              { icon: Mail, href: 'mailto:gvks.2003@gmail.com', label: 'Email', delay: '1.8s' }
             ].map(({ icon: Icon, href, label, delay }) => (
               <div key={label} className="animate-fade-in" style={{ animationDelay: delay }}>
                 <a
