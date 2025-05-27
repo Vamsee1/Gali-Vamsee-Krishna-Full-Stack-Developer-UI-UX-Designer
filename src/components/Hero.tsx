@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,7 @@ const Hero = () => {
             <div className="relative group mx-auto w-32 h-32 sm:w-40 sm:h-40">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                src="/profile.jpg"
                 alt={translations.hero.name}
                 className="relative w-full h-full rounded-full shadow-2xl border-4 border-white/20 group-hover:scale-110 transition-all duration-500 object-cover"
                 loading="eager"
