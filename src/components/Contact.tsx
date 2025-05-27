@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, User, MessageSquare, Calendar, Clock } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, User, MessageSquare, Calendar, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -91,18 +90,11 @@ Date: ${new Date().toLocaleString()}
       delay: '0.1s'
     },
     {
-      icon: Phone,
-      title: translations.contact.phoneTitle || 'Phone',
-      value: '+91 98765 43210',
-      href: 'tel:+919876543210',
-      delay: '0.2s'
-    },
-    {
       icon: MapPin,
       title: translations.contact.locationTitle || 'Location',
       value: translations.contact.location || 'Hyderabad, India 🇮🇳',
       href: '#',
-      delay: '0.3s'
+      delay: '0.2s'
     }
   ];
 
